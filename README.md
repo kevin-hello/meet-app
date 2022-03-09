@@ -74,4 +74,3 @@ User Story: As a User, I should be able to view a chart with the number of upcom
 	Given the user is on the main page
 	When viewing the main page
 	Then a chart should display the upcoming events in each city
-![image](https://user-images.githubusercontent.com/84452104/157477956-adee39fc-6474-4512-99db-6d83ff39ee6e.png)
