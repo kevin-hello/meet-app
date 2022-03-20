@@ -27,31 +27,31 @@ User Story: As a User, I should be able to filter events by city so that I can s
 User Story: As a User, I should be able to show and hide event details so that I can see the details of various events. 
 
 	- Scenario 1: An event element is collapsed by default
-	Given the user has entered appropriate city and number of events info
-	When the user views the event results
-	Then the user should see an event element collapsed by default
+	Given the user is on the main page
+	When an event is displayed
+	Then the event details will be collapsed
 
 	- Scenario 2: User can expand an event to see its details 
-	Given the event is collapsed
-	When a user clicks on a “show details” button
-	Then the event should expand 
+	Given the user is shown a list of events
+    	When the user clicks on an individual event
+    	Then the event details will be displayed
 
 	- Scenario 3: User can collapse an event to hide its details 
-	Given the event is expanded
-	When a user clicks on a “hide details” button
-	Then the event should collapse  
+	Given The user has clicked on an event to display details
+    	When the user clicks on “close” button
+    	Then the event details will be hidden 
 
 - Feature 3: Specify number of events
 User Story: As a User, I should be able to specify the number of events are shown so that I can view the specified number of events.
 
 	- Scenario 1: When user hasn’t specified a number, 32 is the default number
-	Given a user hasn’t specified the number of events
-	When a user searches for events
-	Then 32 should be the default number of event results displayed 
+	Given a user is on the main page
+	When a user hasn't specified a number of events
+	Then the default number of events displayed will be 32
 
 	- Scenario 2: User can change the number of events they want to see
-	Given the user wants to change the number of events they see
-	When the user changes the “Number of Events” field 
+	Given the user is on the main page
+	When the user set a number of events in the “Number of Events” field 
 	Then the specified number of events should be displayed
 
 - Feature 4: Use the App when offline
