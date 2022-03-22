@@ -16,6 +16,7 @@ class CitySearch extends Component {
     if (suggestions.length === 0) {
       this.setState({
         query: value,
+        showSuggestions: false,
         infoText:
           "We can not find the city you are looking for. Please try another city",
       });
@@ -31,6 +32,7 @@ class CitySearch extends Component {
     this.setState({
       query: suggestion,
       showSuggestions: false,
+      infoText: "",
     });
 
     this.props.updateEvents(suggestion);
