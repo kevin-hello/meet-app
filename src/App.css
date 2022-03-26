@@ -200,7 +200,15 @@ input[type="number"] {
   letter-spacing: 0.2px;
   font-family: "Roboto";
 }
-
+.data-vis-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.recharts-pie-label-text {
+  font-weight: bolder;
+  text-shadow: 1px 1px 1px #3b374b9d;
+}
 
 
 @media only screen and (min-width: 992px) {
