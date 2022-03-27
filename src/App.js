@@ -24,60 +24,52 @@ class App extends Component {
     numberOfEvents: 32,
     showWelcomeScreen: undefined,
   };
+
   async componentDidMount() {
     this.mounted = true;
     const accessToken = localStorage.getItem("access_token");
     const isTokenValid = (await checkToken(accessToken)).error ? false : true;
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
+
     this.setState({ showWelcomeScreen: !(code || isTokenValid) });
     if ((code || isTokenValid) && this.mounted) {
       getEvents().then((events) => {
         if (this.mounted) {
-          this.setState({ events, locations: extractLocations(events) });
+          this.setState({
+            events: events.slice(0, this.state.numberOfEvents),
+            locations: extractLocations(events),
+          });
         }
       });
     }
-    if (!navigator.onLine) {
-      this.setState({
-        OfflineText: "You are offline, events won't be updated",
-      });
-    } else {
-      this.setState({
-        OfflineText: "",
-      });
-    }
   }
-
   componentWillUnmount() {
     this.mounted = false;
   }
-  updateNumberOfEvents = (numberOfEvents) => {
-    this.setState(
-      {
-        numberOfEvents,
-      },
-      this.updateEvents(null, numberOfEvents)
-    );
-  };
 
-  updateEvents = (location = null, eventCount = null) => {
-    this.mounted = true;
+  updateEvents = (location) => {
     getEvents().then((events) => {
       const locationEvents =
-        location === "all" || !location
+        location === "all"
           ? events
           : events.filter((event) => event.location === location);
-
+      const { numberOfEvents } = this.state;
       if (this.mounted) {
         this.setState({
-          events: locationEvents.slice(
-            0,
-            eventCount || this.state.numberOfEvents
-          ),
+          events: locationEvents.slice(0, numberOfEvents),
+          currentLocation: location,
         });
       }
     });
+  };
+
+  updateNumberOfEvents = (eventCount) => {
+    const { currentLocation } = this.state;
+    this.setState({
+      numberOfEvents: eventCount,
+    });
+    this.updateEvents(currentLocation, eventCount);
   };
 
   getData = () => {
@@ -93,21 +85,23 @@ class App extends Component {
   };
 
   render() {
-    const { locations, numberOfEvents, events } = this.state;
     if (this.state.showWelcomeScreen === undefined)
       return <div className="App" />;
     return (
       <div className="App">
         <h1>Meet App</h1>
         <h4>Choose your nearest city</h4>
-        <CitySearch updateEvents={this.updateEvents} locations={locations} />
-        <NumberOfEvents
+        <CitySearch
+          locations={this.state.locations}
           updateEvents={this.updateEvents}
-          numberOfEvents={numberOfEvents}
+        />
+        <NumberOfEvents
+          numberOfEvents={this.state.numberOfEvents}
+          updateNumberOfEvents={this.updateNumberOfEvents}
         />
         <h4>Events in each city</h4>
         <div className="data-vis-wrapper">
-          <EventGenre className="pie-chart" events={events} />
+          <EventGenre className="pie-chart" events={this.state.events} />
           <ResponsiveContainer height={400}>
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
               <CartesianGrid />
@@ -123,7 +117,7 @@ class App extends Component {
             </ScatterChart>
           </ResponsiveContainer>
         </div>
-        <EventList events={events} numberOfEvents={numberOfEvents} />
+        <EventList events={this.state.events} />
         <WelcomeScreen
           showWelcomeScreen={this.state.showWelcomeScreen}
           getAccessToken={() => {

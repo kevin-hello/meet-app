@@ -51,11 +51,11 @@ input[type="number"] {
 
 .suggestions {
   width: 250px;
-  position: absolute;
   z-index: 2;
   align-self: center;
-  top: 36px;
   margin: 0;
+  position: absolute;
+  top: 5em;
   font-size: 14px;
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
@@ -207,9 +207,9 @@ input[type="number"] {
   flex-direction: column;
   text-align: center;
 }
-.recharts-pie-label-text {
-  font-weight: bolder;
-  text-shadow: 1px 1px 1px #3b374b9d;
+.recharts-pie{
+  width: 70%;
+  margin: 0 auto;
 }
 
 

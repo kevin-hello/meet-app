@@ -29,7 +29,7 @@ class="btn-text"
 </div>
 </div>
 <a
-href="https://kevin-hello.github.io/meet/privacy.html"
+href="https://kevin-hello.github.io/meet-app/privacy.html"
 rel="nofollow noopener"
 >
 Privacy policy
