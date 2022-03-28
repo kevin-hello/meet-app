@@ -1,26 +1,18 @@
 import React, { Component } from "react";
 import Event from "./Event";
-import { Container, Row, Col } from "react-bootstrap";
-import { OfflineAlert } from "./Alert";
+import { Col } from "react-bootstrap";
 
 class EventList extends Component {
   render() {
     const { events } = this.props;
     return (
-      <Container className="eventlist-container">
-        {!navigator.onLine ? (
-          <OfflineAlert text="You are offline! The events displayed won't be updated!" />
-        ) : (
-          <OfflineAlert text="" />
-        )}
-        <Row className="d-flex justify-content-center eventlist">
-          {events.map((event) => (
-            <Col sm={12} md={6} lg={4} key={event.id}>
-              <Event event={event} />
-            </Col>
-          ))}
-        </Row>
-      </Container>
+      <>
+        {events.map((event) => (
+          <Col key={event.id}>
+            <Event event={event} />
+          </Col>
+        ))}
+      </>
     );
   }
 }
