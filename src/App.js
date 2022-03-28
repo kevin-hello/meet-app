@@ -16,6 +16,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { Container, Row, Col } from "react-bootstrap";
 
 class App extends Component {
   state = {
@@ -88,43 +89,53 @@ class App extends Component {
     if (this.state.showWelcomeScreen === undefined)
       return <div className="App" />;
     return (
-      <div className="App">
-        <h1>Meet App</h1>
-        <h4>Choose your nearest city</h4>
-        <CitySearch
-          locations={this.state.locations}
-          updateEvents={this.updateEvents}
-        />
-        <NumberOfEvents
-          numberOfEvents={this.state.numberOfEvents}
-          updateNumberOfEvents={this.updateNumberOfEvents}
-        />
-        <h4>Events in each city</h4>
-        <div className="data-vis-wrapper">
-          <EventGenre className="pie-chart" events={this.state.events} />
-          <ResponsiveContainer height={400}>
-            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-              <CartesianGrid />
-              <XAxis type="category" dataKey="city" name="City" />
-              <YAxis
-                allowDecimals={false}
-                type="number"
-                dataKey="number"
-                name="Number of events"
-              />
-              <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-              <Scatter data={this.getData()} fill="#8884d8" />
-            </ScatterChart>
-          </ResponsiveContainer>
-        </div>
-        <EventList events={this.state.events} />
-        <WelcomeScreen
-          showWelcomeScreen={this.state.showWelcomeScreen}
-          getAccessToken={() => {
-            getAccessToken();
-          }}
-        />
-      </div>
+      <Container className="App" fluid>
+        <Row>
+          <h1>Meet App</h1>
+          <Col className="city-search-and-number">
+            <h4>Choose your nearest city</h4>
+            <CitySearch
+              locations={this.state.locations}
+              updateEvents={this.updateEvents}
+            />
+            <NumberOfEvents
+              numberOfEvents={this.state.numberOfEvents}
+              updateNumberOfEvents={this.updateNumberOfEvents}
+            />
+          </Col>
+          <h4>Events in each city</h4>
+          <Col className="data-vis-wrapper">
+            <EventGenre className="pie-chart" events={this.state.events} />
+            <ResponsiveContainer height={400}>
+              <ScatterChart
+                margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+              >
+                <CartesianGrid />
+                <XAxis type="category" dataKey="city" name="City" />
+                <YAxis
+                  allowDecimals={false}
+                  type="number"
+                  dataKey="number"
+                  name="Number of events"
+                />
+                <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+                <Scatter data={this.getData()} fill="#8884d8" />
+              </ScatterChart>
+            </ResponsiveContainer>
+          </Col>
+          <Col>
+            <EventList events={this.state.events} />
+          </Col>
+          <Col>
+            <WelcomeScreen
+              showWelcomeScreen={this.state.showWelcomeScreen}
+              getAccessToken={() => {
+                getAccessToken();
+              }}
+            />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

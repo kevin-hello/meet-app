@@ -55,7 +55,7 @@ input[type="number"] {
   align-self: center;
   margin: 0;
   position: absolute;
-  top: 5em;
+  top: 3.1em;
   font-size: 14px;
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
@@ -84,7 +84,7 @@ input[type="number"] {
   border: 1px solid #ccc;
   border-radius: 4px;
   position: relative;
-}
+} 
 
 .details-btn {
   position: absolute;
@@ -207,10 +207,7 @@ input[type="number"] {
   flex-direction: column;
   text-align: center;
 }
-.recharts-pie{
-  width: 70%;
-  margin: 0 auto;
-}
+
 
 
 @media only screen and (min-width: 992px) {
@@ -223,4 +220,7 @@ input[type="number"] {
     min-width: auto;
     margin: 0 auto;
   }
+}
+.recharts-wrapper {
+  margin : 0 auto;
 }
