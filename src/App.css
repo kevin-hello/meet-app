@@ -215,10 +215,7 @@ input[type="number"] {
   min-width: 100%;
   display: flex;
 }
-#pie{
-  width: 100%;
-  margin: 0 0 0 25%;
-}
+
 @media only screen and (min-width: 992px) {
   .data-vis-wrapper {
     flex-direction: row;
@@ -229,4 +226,5 @@ input[type="number"] {
     min-width: auto;
     margin: 0 auto;
   }
+
 }
