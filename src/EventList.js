@@ -6,13 +6,13 @@ class EventList extends Component {
   render() {
     const { events } = this.props;
     return (
-      <>
+      <ul className="event-list">
         {events.map((event) => (
           <Col key={event.id}>
             <Event event={event} />
           </Col>
         ))}
-      </>
+      </ul>
     );
   }
 }

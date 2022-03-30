@@ -92,8 +92,8 @@ class App extends Component {
     return (
       <Container className="App" fluid>
         <Row>
-          <h1>Meet App</h1>
-          <h4>Choose your nearest city</h4>
+          <h1 className="meet-title">Meet App</h1>
+          <h3>Choose your nearest city</h3>
           <CitySearch
             locations={this.state.locations}
             updateEvents={this.updateEvents}
@@ -106,12 +106,21 @@ class App extends Component {
           />
         </Row>
         <Row>
-          <h4>Events in each city</h4>
+          <h3>Events in each city</h3>
         </Row>
         <Row className="data-vis-wrapper">
           <EventGenre className="pie-chart" events={this.state.events} />
           <ResponsiveContainer height={400}>
-            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+            <ScatterChart margin={{ top: 50, right: 20, bottom: 20, left: 20 }}>
+              <text
+                x="50%"
+                y={20}
+                fill="black"
+                textAnchor="middle"
+                dominantBaseline="central"
+              >
+                <tspan fontSize="26">Number of Events by City</tspan>
+              </text>
               <CartesianGrid />
               <XAxis type="category" dataKey="city" name="City" />
               <YAxis
