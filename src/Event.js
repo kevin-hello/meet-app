@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Card from "react-bootstrap/Card";
 
 class Event extends Component {
   state = {
@@ -15,38 +16,47 @@ class Event extends Component {
     const { event } = this.props;
     const { collapsed } = this.state;
     return (
-      <div className="event">
-        <h2 className="summary">{event.summary}</h2>
-        <p className="start-date">
-          {event.start.dateTime} ({event.start.timeZone})
-        </p>
+      <Card className="event">
+        <Card.Body>
+          <h2 className="summary">{event.summary}</h2>
 
-        <p className="location">
-          @{event.summary} | {event.location}
-        </p>
-
-        <button
-          variant="outline-info"
-          className={`details-button ${collapsed ? "show" : "hide"}-details`}
-          onClick={this.handleClick}
-        >
-          {collapsed ? "Show Details" : "Hide Details"}
-        </button>
-
-        {!collapsed && (
-          <div
-            className={`extra-details ${
-              this.state.collapsed ? "hide" : "show"
-            }`}
+          <Card.Text className="start-date">{event.start.dateTime}</Card.Text>
+          <Card.Text className="start-timezone">
+            ({event.start.timeZone})
+          </Card.Text>
+          <Card.Text className="location">
+            @{event.summary} | {event.location}
+          </Card.Text>
+          <button
+            variant="outline-info"
+            className={`details-button ${collapsed ? "show" : "hide"}-details`}
+            onClick={this.handleClick}
           >
-            <h3>About the event:</h3>
-            <a href={event.htmlLink} rel="noreferrer" target="_blank">
-              See details
-            </a>
-            <p className="event-description">{event.description}</p>
-          </div>
-        )}
-      </div>
+            {collapsed ? "Show Details" : "Hide Details"}
+          </button>
+
+          {!collapsed && (
+            <div
+              className={`extra-details ${
+                this.state.collapsed ? "hide" : "show"
+              }`}
+            >
+              <h6>About the event:</h6>
+              <a
+                className="details-link"
+                href={event.htmlLink}
+                rel="noreferrer"
+                target="_blank"
+              >
+                See details
+              </a>
+              <Card.Text className="event-description">
+                {event.description}
+              </Card.Text>
+            </div>
+          )}
+        </Card.Body>
+      </Card>
     );
   }
 }

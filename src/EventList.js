@@ -1,18 +1,25 @@
 import React, { Component } from "react";
 import Event from "./Event";
-import { Col } from "react-bootstrap";
+import Col from "react-bootstrap/Col";
 
 class EventList extends Component {
   render() {
     const { events } = this.props;
     return (
-      <ul className="event-list">
+      <>
         {events.map((event) => (
-          <Col key={event.id}>
+          <Col
+            className="event-list"
+            sm={12}
+            md={6}
+            lg={4}
+            xxl={3}
+            key={event.id}
+          >
             <Event event={event} />
           </Col>
         ))}
-      </ul>
+      </>
     );
   }
 }

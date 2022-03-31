@@ -90,69 +90,85 @@ class App extends Component {
     if (this.state.showWelcomeScreen === undefined)
       return <div className="App" />;
     return (
-      <Container className="App" fluid>
-        <Row>
-          <h1 className="meet-title">Meet App</h1>
-          <h3>Choose your nearest city</h3>
-          <CitySearch
-            locations={this.state.locations}
-            updateEvents={this.updateEvents}
-          />
-        </Row>
-        <Row className="number-events-input">
-          <NumberOfEvents
-            numberOfEvents={this.state.numberOfEvents}
-            updateNumberOfEvents={this.updateNumberOfEvents}
-          />
-        </Row>
-        <Row>
-          <h3>Events in each city</h3>
-        </Row>
-        <Row className="data-vis-wrapper">
-          <EventGenre className="pie-chart" events={this.state.events} />
-          <ResponsiveContainer height={400}>
-            <ScatterChart margin={{ top: 50, right: 20, bottom: 20, left: 20 }}>
-              <text
-                x="50%"
-                y={20}
-                fill="black"
-                textAnchor="middle"
-                dominantBaseline="central"
+      <>
+        <Container className="App" fluid>
+          <Row className="justify-content-center">
+            <h1 className="meet-title">Meet App</h1>
+          </Row>
+          <Row className="justify-content-center">
+            <h4 className="subheaders">Choose your nearest city</h4>
+          </Row>
+          <Row className="justify-content-center">
+            <CitySearch
+              locations={this.state.locations}
+              updateEvents={this.updateEvents}
+            />
+          </Row>
+          <Row className="number-events-input justify-content-center">
+            <NumberOfEvents
+              numberOfEvents={this.state.numberOfEvents}
+              updateNumberOfEvents={this.updateNumberOfEvents}
+            />
+          </Row>
+          <Row className="justify-content-center">
+            <h4 className="subheaders">Events in each city</h4>
+          </Row>
+          <Row className="data-vis-wrapper">
+            <EventGenre className="pie-chart" events={this.state.events} />
+            <ResponsiveContainer height={400}>
+              <ScatterChart
+                margin={{ top: 50, right: 20, bottom: 20, left: 20 }}
               >
-                <tspan fontSize="26">Number of Events by City</tspan>
-              </text>
-              <CartesianGrid />
-              <XAxis type="category" dataKey="city" name="City" />
-              <YAxis
-                allowDecimals={false}
-                type="number"
-                dataKey="number"
-                name="Number of events"
-              />
-              <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-              <Scatter data={this.getData()} fill="#8884d8" />
-            </ScatterChart>
-          </ResponsiveContainer>
-        </Row>
-        <Row>
-          <Col md={12}>
-            {!navigator.onLine ? (
-              <OfflineAlert text="You are offline! The events displayed won't be updated!" />
-            ) : (
-              <OfflineAlert text="" />
-            )}
-          </Col>
-          <EventList events={this.state.events} />
-        </Row>
-        <Row>
+                <text
+                  x="50%"
+                  y={20}
+                  fill="#FBCA57"
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                >
+                  <tspan fontSize="30">Number of Events by City</tspan>
+                </text>
+                <CartesianGrid />
+                <XAxis
+                  type="category"
+                  dataKey="city"
+                  name="City"
+                  tick={{ fill: "#FBCA57", fontSize: "0.7em" }}
+                />
+                <YAxis
+                  allowDecimals={false}
+                  type="number"
+                  dataKey="number"
+                  name="Number of events"
+                  tick={{ fill: "#FBCA57" }}
+                />
+                <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+                <Scatter data={this.getData()} fill="#FBCA57" />
+              </ScatterChart>
+            </ResponsiveContainer>
+          </Row>
+          <Row>
+            <Col md={12}>
+              {!navigator.onLine ? (
+                <OfflineAlert text="You are offline! The events displayed won't be updated!" />
+              ) : (
+                <OfflineAlert text="" />
+              )}
+            </Col>
+          </Row>
+          <Row>
+            <EventList events={this.state.events} />
+          </Row>
+        </Container>
+        <Container>
           <WelcomeScreen
             showWelcomeScreen={this.state.showWelcomeScreen}
             getAccessToken={() => {
               getAccessToken();
             }}
           />
-        </Row>
-      </Container>
+        </Container>
+      </>
     );
   }
 }

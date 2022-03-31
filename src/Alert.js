@@ -23,20 +23,20 @@ class Alert extends Component {
 class InfoAlert extends Alert {
   constructor(props) {
     super(props);
-    this.color = "white";
+    this.color = "#6DDEFF";
   }
 }
 class ErrorAlert extends Alert {
   constructor(props) {
     super(props);
-    this.color = "yellow";
+    this.color = "#FA8562";
   }
 }
 
 class OfflineAlert extends Alert {
   constructor(props) {
     super(props);
-    this.color = "yellow";
+    this.color = "#B9EB80";
   }
 }
 

@@ -1,16 +1,17 @@
 import React from "react";
-import './WelcomeScreen.css';
+import { Row, Container } from "react-bootstrap";
+import "./WelcomeScreen.css";
+
 function WelcomeScreen(props) {
 return props.showWelcomeScreen ?
-(
-<div className="WelcomeScreen">
-<h1>Welcome to the Meet app</h1>
-<h4>
+(<Container className="WelcomeScreen" fluid>
+<h1 className="welcome-title">Welcome to the Meet app</h1>
+<h4 className="subheaders">
 Log in to see upcoming events around the world for
 full-stack
 developers
 </h4>
-<div className="button_cont" align="center">
+<Row className="button_cont" align="center">
 <div class="google-btn">
 <div class="google-icon-wrapper">
 <img
@@ -24,17 +25,17 @@ alt="Google sign-in"
 rel="nofollow noopener"
 class="btn-text"
 >
-<b>Sign in with google</b>
+<b>Sign in with Google</b>
 </button>
 </div>
-</div>
-<a
+</Row>
+<a className="privacy"
 href="https://kevin-hello.github.io/meet-app/privacy.html"
 rel="nofollow noopener"
 >
 Privacy policy
 </a>
-</div>
+</Container>
 )
 : null
 }

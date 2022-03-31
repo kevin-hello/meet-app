@@ -18,7 +18,7 @@ const EventGenre = ({ events }) => {
     setData(() => getData());
   }, [events]);
 
-  const COLORS = ["#2D2A65", "#443F97", "#5A54C9", "#847FD7", "#ADAAE4"];
+  const COLORS = ["#BE83DA", "#6DDEFF", "#F1D548", "#FA8562", "#B9EB80"];
 
   return (
     <ResponsiveContainer height={400}>
@@ -26,11 +26,11 @@ const EventGenre = ({ events }) => {
         <text
           x="50%"
           y={20}
-          fill="black"
+          fill="#FBCA57"
           textAnchor="middle"
           dominantBaseline="central"
         >
-          <tspan fontSize="26">Events by Category</tspan>
+          <tspan fontSize="30">Events by Category</tspan>
         </text>
         <Pie
           data={data}
