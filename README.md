@@ -1,6 +1,6 @@
 # meet-app
 
-The objective of this app is to build a serverless, progressive web application with React using a test driven development technique. This app uses Google Calendar APO to fetch upcoming events.
+The objective of this app is to build a serverless, progressive web application with React using a test driven development technique. This app uses Google Calendar API to fetch upcoming events.
 
 ## Features
 
